@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art</title>
+    <link rel="stylesheet" href="{{url_for('static', path='/bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/app.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/chunk-vendors.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/iconfont.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/mine.css?df')}}">
+</head>
+<body class="background-gray">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white position-fixed bg-transparent">
+    <a class="navbar-brand" style="margin-left: 32px">
+        <img src="/static/img/logo-white.png" alt="logo" height="32px">
+    </a>
+    <span class="navbar-text text-white" style="font-size: larger; font-family: cursive">Magic Art</span>
+</nav>
+
+
+<div class="intro-body">
+    <div data-v-3d3874af class="home-banner-input" style="max-width: 800px">
+        <div data-v-3d3874af="" class="home-banner-input-tips">describe a photo, then create your magic art</div>
+        <div data-v-3d3874af="" class="home-banner-input-length"><span class="iconfont icon-yishu"></span></div>
+    </div>
+</div>
+
+<!-- 设置参数 -->
+<div class="creation-dialog" style="height: 100%; overflow-y: hidden; display: none">
+
+    <div data-v-23a6b8f9 class="creation-start">
+
+        <!-- 提交画面信息按钮 -->
+        <div data-v-23a6b8f9="" class="creation-start-confirm">
+            <div data-v-6639afaf="" data-v-23a6b8f9="" class="gradient-button" style="height: 64px; margin: 0px auto;">
+                <div data-v-6639afaf="" class="gradient-button-inner">
+                    <span data-v-23a6b8f9="" data-v-6639afaf="" style="font-size: 20px; font-weight: 500;">
+                        create your art
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关闭【创建画面】弹窗的按钮 -->
+        <div data-v-23a6b8f9="" class="creation-start-close">
+            <div data-v-454d219a="" data-v-23a6b8f9="" class="close-no-border">
+                <span class="iconfont icon-close"></span>
+            </div>
+        </div>
+
+
+        <div data-v-23a6b8f9 class="creation-start-box">
+            <!-- 输入画面描述 -->
+            <div data-v-23a6b8f9="" class="creation-start-query el-input">
+                <textarea type="text" autocomplete="off" placeholder="输入画面关键字…" maxlength="2000"
+                          class="el-input__inner" id="desc" style="height: 112px"></textarea>
+
+                <!-- 随机生成画面内容 -->
+                <!--<span class="el-input__suffix">
+                    <span class="el-input__suffix-inner">
+                        <span class="el-input__count">
+                            <a data-toggle="tooltip" data-placement="right" title="请神奇海螺GPT3帮助润色" id="random-prompt">
+                                <img src="/static/img/shell.png" style="height: 40px">
+                                &lt;!&ndash;<span class="el-input__count-inner iconfont icon-touzi" style="font-size: 40px"></span>&ndash;&gt;
+                            </a>
+                        </span>
+                    </span>
+                </span>-->
+
+                <div class="sp-contain" id="loading-bar">
+                    <div class="sp sp-bars">
+                    </div>
+                </div>
+                <div class="sp-contain-top" id="loading-word">
+                    <span>loading</span>
+                </div>
+
+
+                <button id="random-prompt" class="button-transparent">
+                    <span id="shell" style="font-size: 14px">🐚请神奇海螺(GPT3)补充画面内容</span>
+                    <span id="shell-word" style="font-size: 14px"></span>
+                </button>
+
+
+            </div>
+
+
+            <div data-v-01924efe data-v-23a6b8f9 style="margin-top: 30px; margin-bottom: 50px;">
+                <div data-v-01924efe class="creation-section">
+
+                    <div data-v-01924efe="" class="creation-header">
+                        <div data-v-01924efe="" class="el-tooltip creation-title" aria-describedby="el-tooltip-251"
+                             tabindex="0">choose engine
+                        </div>
+                    </div>
+
+                    <div data-v-01924efe="" class="creation-list" style="margin: -10px; flex-wrap: nowrap;">
+
+                        <div data-v-01924efe="" class="model-item active" id="stable-diffusion">
+                            <div data-v-01924efe="" class="model-item-bg" id="stable-diffusion-bg"
+                                 style="background-image: url('/static/img/fast.png')"></div>
+
+                            <div data-v-01924efe="" class="model-item-info" style="bottom: 25%;">
+                                <div data-v-01924efe="" class="model-item-name">通用模式</div>
+                                <div data-v-01924efe="" class="model-item-intro">推荐，适合多数场景</div>
+                            </div>
+                        </div>
+
+                        <!--<div data-v-01924efe="" class="model-item" id="disco-diffusion">
+
+                            <div data-v-01924efe="" class="model-item-bg" id="disco-diffusion-bg"
+                                 style="background-image: url('/static/img/high.png'); filter: blur(1.2px)"></div>
+
+                            <div data-v-01924efe="" class="model-item-info" style="bottom: 25%">
+                                <div data-v-01924efe="" class="model-item-name">人像模式</div>
+                                <div data-v-01924efe="" class="model-item-intro">虚拟妹子照片</div>
+                            </div>
+                        </div>-->
+
+                    </div>
+
+                    <div data-v-7e72537a="" class="style-list-wrapper">
+
+                        <div data-v-01924efe class="creation-section-wrapper">
+
+                            <div data-v-01924efe class="creation-section">
+
+                                <div data-v-01924efe="" class="creation-header">
+                                    <div data-v-01924efe="" class="el-tooltip creation-title"
+                                         aria-describedby="el-tooltip-9192" tabindex="0"> style
+                                    </div>
+                                </div>
+
+                                <div data-v-7e72537a="" class="style-list" style="margin: -7px;"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div data-v-01924efe class="creation-section-wrapper">
+                            <div data-v-01924efe class="creation-section">
+
+                                <div data-v-01924efe="" class="creation-header">
+                                    <div data-v-01924efe="" class="el-tooltip creation-title"
+                                         aria-describedby="el-tooltip-9192" tabindex="0"> adjective
+                                    </div>
+                                </div>
+
+                                <div data-v-7e72537a="" class="creation-header">
+                                    <div data-v-01924efe="" class="creation-input el-input">
+                                        <input type="text" autocomplete="off" maxlength="100" id="adjective"
+                                               placeholder="like traditional chinese painting, ukiyoe"
+                                               class="el-input__inner">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div data-v-01924efe class="creation-section-wrapper">
+                            <div data-v-01924efe class="creation-section">
+
+                                <div data-v-01924efe="" class="creation-header">
+                                    <div data-v-01924efe="" class="el-tooltip creation-title"
+                                         aria-describedby="el-tooltip-9192" tabindex="0"> artist
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div data-v-01924efe="" class="creation-input el-input">
+                                        <input type="text" autocomplete="off" maxlength="100" id="artist"
+                                               placeholder="like Greg Rutkowski, James Gurney"
+                                               class="el-input__inner">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript" src="/static/js/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!--动态添加风格选项-->
+<script type="text/javascript">
+
+    var confirm = true;
+
+    (function () {
+        const title = ['CG渲染', '油画', '哑光画', '布面油画', '抽象画', '水墨画', '壁画', '素描', '铅笔画', '木版画', '涂鸦', '水彩画', '湿壁画', '不限风格']
+        const values = ['trending on artstation', 'oil painting', 'matte painting', 'oil on canvas', 'abstract drawing', 'ink painting', 'Murals', 'sketch', 'pencil drawing', 'woodblock print', 'graffiti', 'watercolor painting', 'fresco', '']
+        for (const i in values) {
+            $("[class='style-list']").append('<div data-v-7e72537a="" class="style-item"><div data-v-7e72537a="" class="style-item-pad" value="' + values[i] + '">' + title[i] + '</div></div>')
+        }
+    }())
+</script>
+
+<!--界面上的各种选中效果-->
+<script type="text/javascript">
+    /*基础提示框(Tooltip) 提示框在鼠标移动到指定元素上显示*/
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+
+    $("[class='home-banner-input']").click(
+        function () {
+            $("[class='creation-dialog']").slideDown();
+        });
+
+    $("[class='creation-start-close']").click(
+        function () {
+            $("[class='creation-dialog']").slideUp();
+        }
+    );
+
+    $("#stable-diffusion").click(
+        function () {
+            $("#stable-diffusion").addClass("active")
+            $("#disco-diffusion").removeClass("active")
+            $("#stable-diffusion-bg").css('filter', 'blur(0px)')
+            $("#disco-diffusion-bg").css('filter', 'blur(1.2px)')
+        });
+
+    $("#disco-diffusion").click(
+        function () {
+            $("#disco-diffusion").addClass("active")
+            $("#stable-diffusion").removeClass("active")
+            $("#stable-diffusion-bg").css('filter', 'blur(1.2px)')
+            $("#disco-diffusion-bg").css('filter', 'blur(0px)')
+        });
+
+    $("[class='style-item']").click(
+        function () {
+
+            if ($(this).hasClass('active')) {
+                $("[class='style-item active']").removeClass('active')
+            } else {
+                $("[class='style-item active']").removeClass('active')
+                $(this).addClass('active')
+            }
+
+        }
+    );
+</script>
+
+<!--使用chatGPT润色画面风格-->
+<script type="text/javascript">
+
+    let clicked = true;
+    $('#random-prompt').click(
+        function () {
+            const describe = $("#desc").val()
+            if (describe == "") {
+                alert('Please recheck your input, Required information is not allowed to be empty!')
+            } else {
+                if (clicked) {
+                    // $("#desc").hide()
+                    // $("#loading-bar").css("display", "flex")
+                    // $("#loading-word").css("display", "block")
+                    $('#shell').addClass("spinner-grow spinner-grow-sm")
+                    $('#shell').html("")
+                    $('#shell-word').html("神奇海螺正在努力工作中…")
+
+                    confirm = false,
+                        clicked = false,
+                        $.ajax({
+                            url: "/getPrompt",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(
+                                {describe: describe}
+                            ),
+                            success(data) {
+                                clicked = true
+                                confirm = true
+                                $("#desc").val(JSON.parse(data).msg)
+
+                                $('#shell').removeClass("spinner-grow spinner-grow-sm")
+                                $('#shell').html("🐚请神奇海螺GPT3润色画面内容")
+                                $('#shell-word').html("")
+                            },
+                            error(error) {
+                                clicked = true
+                                confirm = true
+                                $.ajax({
+                                    url: "/getPrompt",
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    data: JSON.stringify(
+                                        {describe: describe}
+                                    )
+                                })
+                            }
+                        })
+                }
+            }
+        })
+</script>
+
+<script type="text/javascript">
+
+    $("[class='creation-start-confirm']").click(
+        function () {
+
+            if (confirm) {
+                let describe = $("#desc").val()
+                const engine = $(".active").attr("id")
+                const style = $("[class='style-item active']").children(".style-item-pad").attr("value")
+                const adjective = $("#adjective").val()
+                const artist = $("#artist").val()
+
+                if (describe == "") {
+                    alert('Please recheck your input, Required information is not allowed to be empty!')
+                } else {
+
+                    const photo_name = (new Date()).getTime() + Math.floor(Math.random() * 9).toString()
+                    const payWindow = window.open('about:blank');
+
+                    if (adjective != '') {
+                        describe = describe + ', ' + adjective
+                    }
+                    if (artist != '') {
+                        describe = describe + ", by " + artist
+                    }
+
+                    if (style != undefined) {
+                        describe = describe + ',' + style
+                    }
+
+                    $.ajax({
+                        url: '/make',
+                        type: 'post',
+                        contentType: "application/json",
+                        data: JSON.stringify(
+                            {
+                                describe: describe,
+                                engine: engine,
+                                adjective: adjective,
+                                artist: artist,
+                                name: photo_name
+                            }
+                        ),
+                        success: function (data) {
+                            console.log(data)
+                            payWindow.location = '/show?' + photo_name
+                            localStorage.setItem(photo_name, describe);
+                        },
+                        error: function (data) {
+                            console.log(data)
+                            payWindow.close()
+                        }
+                    })
+
+                }
+            }
+        }
+    );
+
+
+</script>
+
+
+</body>
+</html>

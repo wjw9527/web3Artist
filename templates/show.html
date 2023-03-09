@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show</title>
+    <link rel="stylesheet" href="{{url_for('static', path='/bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/app.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/chunk-vendors.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/iconfont.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/mine.css?ded')}}">
+</head>
+
+<body class="background-gray">
+
+<div class="position-fixed modal-fullscreen background-gray-blur"/>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white position-fixed bg-transparent">
+    <a class="navbar-brand" style="margin-left: 32px">
+        <img src="/static/img/logo-white.png" alt="logo" height="32px">
+    </a>
+    <span class="navbar-text text-white" style="font-size: larger; font-family: cursive">Magic Art</span>
+</nav>
+
+<div id="transition">
+    <p style="padding-top: 25% ;text-align: center; font-size: large; color: white">
+        artistic generation in progress, just wait for a moment…
+    </p>
+
+    <div data-v-23a6b8f9="" class="creation-start-confirm">
+        <div data-v-6639afaf="" data-v-23a6b8f9="" class="gradient-button"
+             style="height: 56px; width: 120px;margin: 0px auto;">
+            <div data-v-6639afaf="" class="gradient-button-inner"><span data-v-23a6b8f9="" data-v-6639afaf=""
+                                                                        style="font-size: 18px; font-weight: 500;">refresh</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="text-align: center; border-radius: 10px; display: none" id="show">
+    <div style="height: 100px"></div>
+    <img src="/static/img/bg-new.jpg" style="max-width: 50%; border-radius: 10px; border: 1px" id="show-photo">
+    <div style="height: 20px"></div>
+    <div class="mx-auto w-50 text-wrap">
+                <span id="descriptors" style="color: white; font-size: 14px">
+                    descriptors：
+                </span>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    function again() {
+        setTimeout(function () {
+
+            $.ajax({
+            url: '/get_photo/'+ window.location.search.substring(1),
+            contentType: "application/json",
+            success: function (data) {
+                const src = data.photo
+
+                if (src != "") {
+                    $('#transition').css('display', 'none')
+                    $('#show').css('display', 'block')
+                    $('#show-photo').attr('src', src)
+                    const desc = localStorage.getItem(window.location.search.substring(1))
+                    console.log(desc)
+                    $('#descriptors').html(desc)
+                } else {
+                    again()
+                }
+            },
+            error: function (data) {
+                again()
+            }
+        })
+
+        }, 10000)
+    }
+
+
+    $(function () {
+        $.ajax({
+            url: '/get_photo/'+ window.location.search.substring(1),
+            contentType: "application/json",
+            success: function (data) {
+                const src = data.photo
+
+                if (src != "") {
+                    $('#transition').css('display', 'none')
+                    $('#show').css('display', 'block')
+                    $('#show-photo').attr('src', src)
+                    const desc = localStorage.getItem(window.location.search.substring(1))
+                    console.log(desc)
+                    $('#descriptors').html(desc)
+                } else {
+                    again()
+                }
+            },
+            error: function (data) {
+                again()
+            }
+        })
+    });
+
+</script>
+
+</body>
+</html>

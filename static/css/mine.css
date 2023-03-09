@@ -1,0 +1,147 @@
+.background-gray {
+    /*background: #eeeeee;*/
+    background-image: url("/static/img/bg-new.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.data-v-01924efe-hide::before {
+    display: none;
+}
+
+
+.background-gray-blur {
+    background: rgba(0,0,0,.65);
+        background-size: 100% 100%;
+        width: 100%; height: calc(100%);-webkit-backdrop-filter: blur(36px)
+}
+
+.button-transparent {
+    color: #c0c4cc;
+    background-color: transparent;
+    border-width: 0px;
+    margin-top: 6px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.button-transparent:hover {
+    color: white;
+}
+
+.sp-contain {
+  height: 56px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.sp-contain-top {
+  display: none;
+  height: 56px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sp {
+  width: 32px;
+  height: 32px;
+  clear: both;
+  margin: 20px 0;
+}
+
+.sp-bars {
+  position: relative;
+  width: 10px;
+  border: 1px #ffffff solid;
+  background-color: white;
+  border-radius: 3px;
+  /*background-color: rgba(0, 0, 0, 0.25);*/
+  -webkit-animation: spBars 1s infinite linear;
+  animation: spBars 1s infinite linear;
+}
+
+.sp-bars:after, .sp-bars:before {
+  content: '';
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border: inherit;
+  border-radius: 3px;
+  background-color: inherit;
+  top: -1px;
+}
+
+.sp-bars:before {
+  left: -20px;
+  -webkit-animation: spBarsBefore 1s infinite linear;
+  animation: spBarsBefore 1s infinite linear;
+}
+
+.sp-bars:after {
+  right: -20px;
+  -webkit-animation: spBarsAfter 1s infinite linear;
+  animation: spBarsAfter 1s infinite linear;
+}
+
+@keyframes spBarsBefore {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1, 1.25);
+  }
+  50% {
+    transform: scale(1, 0.75);
+  }
+  75% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+@keyframes spBars {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 1.25);
+  }
+  75% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+@keyframes spBarsAfter {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 0.75);
+  }
+  75% {
+    transform: scale(1, 1.25);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+
+/*.home-banner-input-tips {
+    width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}*/
