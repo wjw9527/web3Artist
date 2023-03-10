@@ -18,7 +18,8 @@ token = "此处填写hugging face 的token，用于下载 SD 模型"
     thread.start()
     
 简易的 demo 演示网址（由于使用了免费的ngrok穿透服务，稳定性极差，可能无法访问。）
-http://2ae6-35-247-58-239.ngrok.io
+
+http://9b7f-35-196-110-182.ngrok.io
 
 # 使用教程
 在输入框中输入画面的关键单词，点击 “请神奇海螺GPT3补充画面内容”按钮， chatGPT 自动完善画面内容细节。
